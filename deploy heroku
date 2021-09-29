@@ -1,0 +1,22 @@
+fazendo deploy na nuvem heroku
+
+comandos do terminal:
+*heroku login (quando aparecer o site e voce logar, no terminal vai estar assim: Logged in as vitorcsharp@hotmail.com)
+
+*git remote -v (para ver os repositorios do git pois precisamos dele)
+
+*heroku create (vai criar um app no repositorio git)
+
+*git remote -v (voce vera que tem repositirio do git como heroku agora)
+
+*git add .
+
+*git commit -m 'deploy no heroku'
+
+*git push heroku master 
+
+*heroku logs --tail
+
+*heroku ps:scale web=1 (caso der erro h14)
+
+

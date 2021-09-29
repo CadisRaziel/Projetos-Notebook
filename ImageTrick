@@ -1,0 +1,80 @@
+Imagens no flutter
+sempre no assets crie a pasta images e depois a pasta 2x e 3x
+
+vamos redimensionar a imagem em 25% e 50%:
+$ convert -resize 25% imagem.jpg metade_da_imagem.jpg
+$ convert -resize 50% imagem.jpg metade_da_imagem.jpg
+
+
+
+
+https://terminalroot.com.br/2015/03/tratamento-de-imagens-com-imagemagick.html
+
+Os seguintes comandos do ImageMagick estão disponíveis:
+animate – Anima imagens e mostra na tela
+compare – Compara matematicamente e visualmente duas imagens
+composite – Adiciona uma imagem em cima da outra
+conjure – Interpretador de scripts em linguagem Magick (MSL)
+convert – Converte e altera imagens em diversos formatos e formas
+display – Mostra imagens ou sequências de imagens na tela
+identify – Mostra informações e características de uma imagem
+import – Salva o conteúdo da tela em um arquivo (famoso print-screen)
+mogrify – Mesma coisa que o convert, só que sobrescreve os arquivos que está trabalhando
+montage – Junta várias imagens em uma só
+stream – Extrai porções e/ou pixels das imagens e salva em outro local(Quando no Windows, estes mesmos nomes estão disponíveis, mas com a extensão .exe)
+
+
+
+De JPEG para PNG:
+$ convert imagem.jpg imagem.jpg
+$ identify imagem.jpg imagem.jpg
+
+De PNG para GIF:
+$ convert imagem.jpg imagem.gif
+
+Reduzindo para um tamanho específico:
+$ convert -resize '800x600' foto.jpg destino.jpg
+
+Redimensiona a foto.jpg para 800×600 (aumenta ou diminui) e salva em destino.jpg.
+Redimensionando todas as imagens de um diretório:O convert aceita os coringas (wildcards) da shell, ou seja, o asterisco (*) pode representar tudo:
+$ convert -resize 50% *.jpg
+
+Então neste caso, é melhor a gente usar o comando mogrify com a opção -path, assim:
+$ mkdir -p resultado
+$ mogrify -path resultado -resize 50% *.jpg
+
+Outro jeito de fazer o mesmo, agora utilizando o convert e shell-script:
+$ mkdir -p resultado
+$ for IMAGEM in *.jpg ; do convert -resize 50% $IMAGEM resultado/$IMAGEM ; done
+
+Mexendo na qualidadeEm alguns formatos como o .jpg, é possível mexer na qualidade da imagem, que impacta também no tamanho da mesma. Exemplo:
+$ convert -quality 80% imagem.jpg
+
+É possível rotacionar as imagens automaticamente, com o angulo desejado. Por exemplo, vamos rotacionar nos angulos 90, 180 e 270 graus, que correspondem a “deitar a imagem” e a virá-la de cabeça pra baixo:
+$ convert -rotate 90 foto.jpg foto90g.jpg
+$ convert -rotate 180 foto.jpg foto180g.jpg
+$ convert -rotate 270 foto.jpg foto270g.jpg
+
+A melhor forma de se criar thumbnails, é utilizar a opção -thumbnail ao invés do -resize. Eles fazem praticamente a mesma coisa, mas a opção -thumbnail também remove informações dentro da imagem que não são úteis em thumbnails.
+$ mkdir -p thumbnails
+$ mogrify -path thumbnails -thumbnail '100x150' *.jpg
+
+Todas as imagens com extensão .jpg serão redimensionadas para 100×150 pixels e jogadas em um diretório chamado thumbnails, com o mesmo nome. Mais uma vez, não se esqueça da opção -path ou você pode perder todas as imagens originais.
+Agora gerando thumbnails com apenas a largura fixa, isso significa que a altura pode variar de acordo com a foto.
+$ mkdir -p thumbnails
+$ mogrify -path thumbnails -thumbnail '100x150>' *.jpg
+
+Se você está fazendo isso com fotos que vem de cameras digitais, dentro da imagem geralmente tem uma informação se a imagem deve ser rotacionada caso você tenha tirado a foto com a câmera em pé. Neste caso, a opção -auto-orient se torna bastante útil pois rotaciona pra você:
+$ mkdir -p thumbnails
+$ mogrify -path thumbnails -thumbnail '100x150>' -auto-orient *.jpg
+
+
+Um último exemplo de geração de thumbnail, que peguei na documentação do ImageMagick, é criar uma “borda” no estilo foto polaroid:
+
+$ convert -thumbnail '100x150>' -bordercolor snow -background black \
++polaroid foto.jpg foto_thumbnailpolarid.jpg
+Também tem outras ténicas bem interessantes:
+$ convert -thumbnail '100x150>' -matte -background none \
+-vignette 0x4 foto.jpg foto_thumbnail2.jpg
+$ convert -thumbnail '100x150>' -matte -virtual-pixel transparent \
+-channel A -blur 0x8 -level 0,50% +channel foto.jpg thumbnail_softedge.jpg

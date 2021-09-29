@@ -1,0 +1,10 @@
+Abrindo o tiled
+
+No terminal digite:
+Passo 1: cd Downloads 
+Passo 2: sudo chmod a+x Tiled-1.7.0-x86_64.AppImage
+Passo 3: ./Tiled-1.7.0-x86_64.AppImage
+
+
+
+https://linuxhint.com/how-to-install-tiled-map-editor-on-ubuntu-linux/

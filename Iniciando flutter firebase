@@ -1,0 +1,53 @@
+cd Documentos > cd Flutter > flutter create nomedoprojeto
+cd nomedoprojeto 
+nomedoprojeto: dart migrate --apply-changes (para colocar o null safety) posso criar o projeto e por depois tambem
+nomedoprojeto code.
+nomedoprojeto flutter run
+
+
+caso precisar no visual studio de CTRL + p coloque ">" add vai aparecer "Pubspec assist: Add/update dependencies aperte o Enter e coloque "http" e aperte o enter
+
+
+integrando o firebase no nosso projeto flutter :
+PRIMEIRO PASSO: inicialmente crie um projeto no firebase para pegar o "nome do pacote" entre na pasta "android" > "app" > "src" > "Profile" > "Androidmanifest.xml" e la estara o "package"
+
+coloque um apelido: "aula flutter ou projeto spofity"
+
+
+depois tem o seguinte: "Certificado de assinatura de depuração SHA-1 (opcional)"
+para pegar essa chave de uma forma rapido e fácil abra o terminal e digite esse comando:
+cd android/ e deopis digite o comando abaixo
+ ./gradlew signingReport
+e pronto ele dara todas as chaves SHA (repare que vai aparecer varios arquivos porém todos a chave SHA é IGUAL !!)
+
+
+Segundo passo: entre no site www.pub.dev.com e procure por "firebase_core"
+nós não instalamos ele via terminal, nós pegamos a dependencia dele "firebase_core: ^1.0.4" e o cloud_firestore: ^1.0.6
+e colamos no arquivo do vscode chamado "Pubspec.yaml" nas dependencias, ao colar o arquivo la clique no icone que esta do lado direito na parte de cima de "download" que ele baixa e instala automaticamente !! ou se um CTRL + S
+e repare que ele vai criar arquivos como "flutter-plugins" que ai voce sabe que deu tudo certo !!
+Caso na hora de abrir o app no emulador de um erro de depreciado coloque isso no terminal "$ flutter pub upgrade, $ flutter pub get" e rode denovo o emulador
+
+
+
+
+Terceiro passo: baixe o arquivo json que ele esta pedindo e jogue essr arquivo dentro da pasta "android" > "app" (ou seja salve dentro da pasta app)
+e rode o projeto 
+
+
+depois na pagina do Firebase clique em "proxima" que ele vai para outra pagina 
+nessa pagina tem dependendicas e pluggins que precisamos colocar 
+ 
+Primeiro passo: abra a pasta "android"> "build.gradle" e adicione as extenções como é pedido
+classpath 'com.google.gms:google-services:4.3.5' nas dependencies
+
+Segundo passo: Adicionando os pluggins abra a pasta "android" > "app" > "build.gradle" e cole essa perto dos plugins "apply plugin: 'com.google.gms.google-services'"
+e depois nas "dependencies" logo abaixo cole isso:
+    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.firebase:firebase-analytics'
+
+E SALVE E PRONTO !!
+
+
+
+
+

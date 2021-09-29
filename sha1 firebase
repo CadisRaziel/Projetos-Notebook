@@ -1,0 +1,8 @@
+chave sh para google sign in ou google phone authenticator
+
+
+no terminal digite: cd android 
+depois no terminal novamente digite: ./gradlew signinReport
+
+pegue a SHA-a do 'debugAndroidTest'
+obs: todas são iguais porém é só por garantia
