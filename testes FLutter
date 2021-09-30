@@ -1,0 +1,12 @@
+Teste de unidade(teste unitario) => Testes que vamos aplicar na regra de negócio, exemplo temos o metodo validarCalculoBoleto(){} vamos escrever um teste de unidade que vai garantir que aquele metodo funciona como o esperado.
+
+Widget testes => Proprio do flutter, aplicamos nas nossas pages paga garantir que elas estão sendo renderizadas como nos esperamos(ao invez de testarmos no celular, realizamos esse teste), tipo para ver se nao ta dando overflow, se o texto aparece corretamente, se ta na cor certa, espaçamento certo, etc...
+
+Golden teste => Pouco conhecido, um padrão do ebay, com ele nós conseguimos renderizar, gerar uma imagem do estado dos nossos components, com isso geramos a imagem e vemos se é o que esperamos, usado para design system, exemplo: temos um botão com a cor tal, ele pode habilitar ou desbailitar, ele tem borda ou não tem, pode ser um link, o botão pode ter varios estados, com isso o golden teste mostra na imagem que o botão esta com todos os estados corretos
+
+Teste de integração => Teste onde carregamos nossa aplicação, clica no botão, fazer login, navegar para uma pagina, colocar um item no carrinho, finalizar a compra, volta para a pagina inicial...
+(podemos usar o firebase testes labs) (flutter teste apium)
+
+
+
+Obs; O teste precisa ser performatico !!
